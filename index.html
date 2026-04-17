@@ -3,48 +3,108 @@
 <head>
   <meta charset="UTF-8">
   <title>rasche.io</title>
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      max-width: 700px;
-      margin: 80px auto;
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0b1220;
+      color: #e5e7eb;
       line-height: 1.6;
-      background: #0f172a;
-      color: #e2e8f0;
     }
-    h1 {
-      font-size: 2.5rem;
+
+    /* NAVBAR */
+    nav {
+      position: sticky;
+      top: 0;
+      display: flex;
+      gap: 24px;
+      padding: 16px 32px;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
-    h2 {
-      margin-top: 40px;
-      color: #38bdf8;
-    }
-    a {
-      color: #38bdf8;
+
+    nav a {
+      color: #94a3b8;
       text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+      transform: translateY(-1px);
+    }
+
+    /* CONTENT */
+    .container {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 0 24px;
+    }
+
+    section {
+      display: none;
+      animation: fade 0.25s ease-in-out;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #cbd5e1;
     }
   </style>
 </head>
+
 <body>
 
-  <h1>rasche.io</h1>
-  <p>Personal learning & building space.</p>
+<nav>
+  <a onclick="show('home')">Home</a>
+  <a onclick="show('about')">About</a>
+  <a onclick="show('projects')">Projects</a>
+</nav>
 
-  <h2>About</h2>
-  <p>
-    I’m Marius. I’m learning computer science, AI, and systems thinking.
-    This site is my public notebook.
-  </p>
+<div class="container">
 
-  <h2>What I'm doing</h2>
-  <ul>
-    <li>Learning Python & CS</li>
-    <li>Exploring AI and bioinformatics</li>
-    <li>Building small projects</li>
-  </ul>
+  <section id="home" class="active">
+    <h1>rasche.io</h1>
+    <p>Personal space for learning, building and thinking.</p>
+  </section>
 
-  <h2>Projects</h2>
-  <p>Coming soon...</p>
+  <section id="about">
+    <h1>About</h1>
+    <p>I’m Marius. I explore computer science, AI systems and bio-computation.</p>
+  </section>
+
+  <section id="projects">
+    <h1>Projects</h1>
+    <p>Nothing public yet — but building in progress.</p>
+  </section>
+
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll("section").forEach(s => {
+    s.classList.remove("active");
+  });
+  document.getElementById(id).classList.add("active");
+}
+</script>
 
 </body>
 </html>
